@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap 4.3.1 CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/popup-windows.css">
+
+    <title>Popup windows demo</title>
+
+  </head>
+
+  <body>
+
+
+    <div class="container-fluid">
+
+        <h3>Popup windows demo</h3>
+
+        <button type="button" class="btn btn-success open-notification-popup-btn">
+            Open Notification Popup Window
+        </button>
+
+        <button type="button" class="btn btn-primary open-confirm-popup-btn">
+            Open Confirm Popup Window
+        </button>
+
+        <button type="button" class="btn btn-warning open-progress-popup-btn">
+            Open Popup Window with Spinner
+        </button>
+
+        <button type="button" class="btn btn-danger open-form-popup-btn">
+            Open Popup Window with Form
+        </button>
+
+    </div>
+
+
+
+    <!-- Popup Templates -->
+
+    <!-- Notification popup window -->
+    <div class="modal fade" id="notification_popup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="message">
+                    </div>
+                    <hr>
+                    <button type="button" class="btn btn-primary button ok-button" data-dismiss="modal">OK</button>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- Confirm popup window -->
+    <div class="modal fade" id="confirm_popup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="message"></div>
+                    <hr>
+                    <button type="button" class="btn btn-primary button ok-button" data-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-success button cancel-button" data-dismiss="modal">Cancel</button>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+    <!-- Progress bar popup window -->
+
+    <div class="modal fade" id="progress_popup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="text-center">
+                        <h4 class="message">Please, wait...</h4>
+                        <hr>
+                        <div class="loader"></div>
+                        <hr>
+
+                    </div>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- Confirm popup window -->
+    <div class="modal fade" id="form_popup_window">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form_container">
+                    </div>
+                    <button type="button" class="btn btn-primary button submit_button" data-dismiss="modal">
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-success button cancel_button" data-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <div style="display: none">
+        <div class="form_popup_window__form_template">
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title"></h3>
+                    <div class="alert alert-danger" style="display: none">
+                        <ul></ul>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <form class="popup_form"
+                          action="#"
+                          method="POST">
+                        <!-- @csrf -->
+
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text"
+                                   name="name"
+                                   class="form-control name"
+                                   aria-describedby=""
+                                   placeholder="Enter name"
+                                   value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title">Email</label>
+                            <input type="text"
+                                   name="email"
+                                   class="form-control email"
+                                   aria-describedby=""
+                                   placeholder="Enter email"
+                                   value="">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- END:Popup Templates -->
+
+
+    <!-- jQuery 3.3.1 -->
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+
+    <!-- Bootstrap JS 4.3.1 -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/popup-windows.js"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            $('.open-notification-popup-btn').click(function(){
+                new notificationPopupWindow({
+                    title: 'Notification',
+                    message: 'Hello World!'
+                }).open();
+            });
+
+            $('.open-confirm-popup-btn').click(function(){
+                new confirmPopupWindow({
+                    title: 'Confirm',
+                    message: 'Are you sure you want to do this?',
+                    ok : function(){
+                        setTimeout(function(){
+                            new notificationPopupWindow({
+                                message: 'Action confirmed!'
+                            }).open();
+                        }, 500);
+                    }
+                }).open();
+            });
+
+            $('.open-progress-popup-btn').click(function(){
+                new progressPopupWindow({
+                    message: 'Please, wait...'
+                }).open();
+            });
+
+            $('.open-form-popup-btn').click(function(){
+                new formPopupWindow({
+                    title: 'Title',
+                    submit_button_handler: function(){
+                        setTimeout(function(){
+                            new notificationPopupWindow({
+                                message: 'Form submitted!'
+                            }).open();
+                        }, 500);
+                    }
+                }).open();
+            });
+
+        });
+    </script>
+
+  </body>
+</html>
